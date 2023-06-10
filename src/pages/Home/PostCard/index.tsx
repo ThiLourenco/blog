@@ -1,6 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
 import { enUS } from "date-fns/locale";
-import React from "react";
 import { IPost } from "..";
 import { formatText } from "../../../utils/formatText";
 import { PostCardContainer } from "./styles";
@@ -15,6 +14,9 @@ export function PostCard({ post }: IPostCard) {
     locale: enUS,
     addSuffix: true,
   });
+
+  const formattedBody = body ? formatText(body, 80) : "";
+
   return (
     <PostCardContainer to={`/${number}`}>
       <header>
@@ -22,7 +24,7 @@ export function PostCard({ post }: IPostCard) {
         <span>{formattedDate}</span>
       </header>
       <main>
-        <p>{formatText(body, 80)}</p>
+        <p>{formattedBody}</p>
       </main>
     </PostCardContainer>
   );
